@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c60ae567-9e03-496b-b23d-55e5e02667cd": {
+      "ProjectGuid": "c60ae567-9e03-496b-b23d-55e5e02667cd",
+      "DisplayName": "EmployeesAPI",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

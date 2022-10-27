@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alan Barbosa\\Documents\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Alan Barbosa\\Desktop\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI.csproj",
       "projectName": "EmployeesAPI",
-      "projectPath": "C:\\Users\\Alan Barbosa\\Documents\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI.csproj",
+      "projectPath": "C:\\Users\\Alan Barbosa\\Desktop\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI.csproj",
       "packagesPath": "C:\\Users\\Alan Barbosa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alan Barbosa\\Documents\\EmployeesAPI\\EmployeesAPI\\obj\\",
+      "outputPath": "C:\\Users\\Alan Barbosa\\Desktop\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Alan Barbosa\\AppData\\Roaming\\NuGet\\NuGet.Config",
