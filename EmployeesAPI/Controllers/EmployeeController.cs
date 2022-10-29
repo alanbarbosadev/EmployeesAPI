@@ -1,4 +1,5 @@
 ﻿using EmployeesAPI.Data;
+using EmployeesAPI.IRepositories;
 using EmployeesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,18 +11,27 @@ namespace EmployeesAPI.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IEmployeeRepository _repository;
 
-        public EmployeeController(DataContext context)
+        public EmployeeController(IEmployeeRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<List<Employee>>> Get()
+        public async Task<ActionResult<List<Employee>>> Get(int? departmentId = null)
         {
-            var employees = await _context.Employees.AsNoTracking().ToListAsync();
+            IEnumerable<Employee> employees = null;
+
+            if (departmentId == null)
+            {
+                employees = await _repository.ReadAllAsync();
+            }
+            else
+            {
+                employees = await _repository.ReadAllAsync(x => x.DepartmentId == departmentId);
+            }
 
             return Ok(employees);
         }
@@ -30,7 +40,7 @@ namespace EmployeesAPI.Controllers
         [Route("ById/{id}")]
         public async Task<ActionResult<Employee>> GetById(int id)
         {
-            var employee = await _context.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var employee = await _repository.ReadByIdAsync(id);
 
             if (employee == null) 
                 return NotFound(new { message = "Employee Not Found!" });
@@ -41,14 +51,12 @@ namespace EmployeesAPI.Controllers
         [HttpPost]
         [Route("")]
         public async Task<ActionResult<Employee>> Post(
-            [FromBody]Employee employee,
-            [FromServices]DataContext _context)
+            [FromBody]Employee employee)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { message = "Invalid Employee" });
 
-            _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
+            await _repository.CreateAsync(employee);
 
             return Ok(employee);
         }
@@ -57,8 +65,7 @@ namespace EmployeesAPI.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Employee>> Put(
             int id,
-            [FromBody]Employee employee,
-            [FromServices]DataContext _context)
+            [FromBody]Employee employee)
         {
             if (id != employee.Id)
                 return BadRequest(new { message = "Invalid Employee" });
@@ -68,8 +75,7 @@ namespace EmployeesAPI.Controllers
 
             try
             {
-                _context.Entry<Employee>(employee).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
+                await _repository.UpdateAsync(employee);
                 return Ok(employee);
             }
             catch (DbUpdateConcurrencyException)
@@ -86,15 +92,14 @@ namespace EmployeesAPI.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Employee>> Delete(int id)
         {
-            var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == id);
+            var employee = await _repository.ReadByIdAsync(id);
 
             if (employee == null) 
                 return NotFound(new { message = "Employee Not Found" });
 
             try
             {
-                _context.Employees.Remove(employee);
-                await _context.SaveChangesAsync();
+               await _repository.DeleteAsync(employee);
                 return Ok(employee);
             }
             catch (Exception)

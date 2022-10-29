@@ -3,21 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeesAPI.Models
 {
-    [Table("Department")]
     public class Department
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Required(ErrorMessage = "Required Field!")]
-        [MinLength(2, ErrorMessage = "This Field Must Contain 2 Or More Characters!")]
-        [MaxLength(20, ErrorMessage = "This Field Must Contain 20 Or Less Characters!")]
-        public string Name { get; set; }
-        public virtual List<Employee> Employees { get; set; }
-
-        public Department()
+        public Department(int id, string name)
         {
+            Id = id;
+            Name = name;
             Employees = new List<Employee>();
         }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Employee> Employees { get; set; }
     }
 }
