@@ -54,7 +54,7 @@ namespace EmployeesAPI.Controllers
             [FromBody]Employee employee)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { message = "Invalid Employee" });
+                return BadRequest(ModelState);
 
             await _repository.CreateAsync(employee);
 
@@ -99,7 +99,7 @@ namespace EmployeesAPI.Controllers
 
             try
             {
-               await _repository.DeleteAsync(employee);
+                await _repository.DeleteAsync(employee);
                 return Ok(employee);
             }
             catch (Exception)

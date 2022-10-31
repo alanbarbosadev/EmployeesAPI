@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FZSlmzG184ZcSZu6LQdwDxo78pexwBCqJoRqji3O9njm7Srn/XAq2C28q/+LzndCJhycdOMMIZsf/Gdg7/AuEA==",
+  "dgSpecHash": "rZrPgH2COn1esYNDqEwnce9JA7EBYjyv9yIZoQEdQ1zM11TNbnu66PgIRTjTISb3t9cWOjKZJyVET+FitNE9dQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alan Barbosa\\Desktop\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI.csproj",
+  "projectFilePath": "C:\\Users\\Alan Barbosa\\Desktop\\EmployeeAPI\\EmployeesAPI\\EmployeesAPI\\EmployeesAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alan Barbosa\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Alan Barbosa\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
